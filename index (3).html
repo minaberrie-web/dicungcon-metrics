@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Metric Glossary — Đi Cùng Con</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #F7F6F3;
+    --surface: #FFFFFF;
+    --border: #E8E6E0;
+    --border-hover: #D4D0C8;
+    --text-primary: #1A1916;
+    --text-secondary: #6B6860;
+    --text-tertiary: #9E9C97;
+    --purple-bg: #EEEDFE;
+    --purple-text: #3C3489;
+    --purple-mid: #534AB7;
+    --purple-formula-bg: #F4F2FC;
+    --amber-text: #8A5B0A;
+    --amber-dot: #D4890A;
+    --coral-bg: #FFF1ED;
+    --coral-border: #F5C4B3;
+    --coral-text: #993C1D;
+    --teal-bg: #EDF9F4;
+    --teal-border: #9FE1CB;
+    --teal-text: #0F6E56;
+    --green-bg: #EAF3DE;
+    --green-text: #27500A;
+    --blue-bg: #E6F1FB;
+    --blue-text: #0C447C;
+    --gold-bg: #FAEEDA;
+    --gold-text: #633806;
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+    --radius-pill: 999px;
+  }
+
+  html { font-size: 16px; }
+  body { font-family: 'Be Vietnam Pro', sans-serif; background: var(--bg); color: var(--text-primary); min-height: 100vh; -webkit-font-smoothing: antialiased; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+  /* Header */
+  .header { padding: 48px 0 32px; border-bottom: 1px solid var(--border); margin-bottom: 32px; }
+  .header-inner { display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+  .header-title { font-size: 28px; font-weight: 600; color: var(--text-primary); line-height: 1.2; margin-bottom: 6px; }
+  .header-sub { font-size: 14px; color: var(--text-secondary); line-height: 1.6; max-width: 480px; }
+  .header-badge { font-size: 11px; font-weight: 500; padding: 4px 10px; background: var(--purple-bg); color: var(--purple-mid); border-radius: var(--radius-pill); letter-spacing: .04em; }
+
+  /* Controls */
+  .controls { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 28px; }
+  .search-wrap { position: relative; flex: 1; min-width: 200px; max-width: 320px; }
+  .search-icon { position: absolute; left: 11px; top: 50%; transform: translateY(-50%); color: var(--text-tertiary); pointer-events: none; }
+  .search-input { width: 100%; font-family: inherit; font-size: 13px; padding: 8px 12px 8px 34px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); color: var(--text-primary); outline: none; transition: border-color .15s; }
+  .search-input:focus { border-color: var(--border-hover); }
+  .search-input::placeholder { color: var(--text-tertiary); }
+  .filters { display: flex; gap: 6px; flex-wrap: wrap; }
+  .pill { font-family: inherit; font-size: 12px; font-weight: 500; padding: 6px 14px; border-radius: var(--radius-pill); border: 1px solid var(--border); background: var(--surface); color: var(--text-secondary); cursor: pointer; transition: all .15s; white-space: nowrap; }
+  .pill:hover { border-color: var(--border-hover); color: var(--text-primary); }
+  .pill.active { background: var(--text-primary); color: #fff; border-color: var(--text-primary); }
+
+  /* Count */
+  .count-row { font-size: 12px; color: var(--text-tertiary); margin-bottom: 16px; }
+
+  /* Grid */
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; padding-bottom: 48px; }
+  @media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+
+  /* Card */
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 20px; display: flex; flex-direction: column; gap: 12px; transition: border-color .15s, box-shadow .15s; }
+  .card:hover { border-color: var(--border-hover); box-shadow: 0 2px 8px rgba(0,0,0,.04); }
+  .card-top { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .metric-name { font-size: 22px; font-weight: 600; color: var(--text-primary); }
+  .cat-badge { font-size: 10px; font-weight: 600; padding: 3px 8px; border-radius: 4px; letter-spacing: .06em; text-transform: uppercase; }
+  .cat-Engagement  { background: var(--blue-bg);   color: var(--blue-text); }
+  .cat-Retention   { background: var(--purple-bg);  color: var(--purple-text); }
+  .cat-Traffic     { background: var(--green-bg);   color: var(--green-text); }
+  .cat-User        { background: var(--gold-bg);    color: var(--gold-text); }
+  .cat-Definition  { background: var(--teal-bg);    color: var(--teal-text); }
+  .metric-full { font-size: 12px; color: var(--text-tertiary); font-weight: 400; margin-top: -4px; }
+  .metric-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.65; }
+
+  /* 2-layer */
+  .two-layers { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .layer-box { border-radius: var(--radius-sm); padding: 10px 11px; }
+  .layer-box.session   { background: var(--coral-bg); border: 1px solid var(--coral-border); }
+  .layer-box.activated { background: var(--teal-bg);  border: 1px solid var(--teal-border); }
+  .layer-title { font-size: 11px; font-weight: 600; margin-bottom: 3px; }
+  .layer-box.session   .layer-title { color: var(--coral-text); }
+  .layer-box.activated .layer-title { color: var(--teal-text); }
+  .layer-desc { font-size: 11px; color: var(--text-secondary); line-height: 1.55; }
+
+  /* Formula */
+  .formula-box { background: var(--purple-formula-bg); border-radius: var(--radius-sm); padding: 10px 12px; }
+  .formula-label { font-size: 10px; font-weight: 600; color: var(--purple-mid); letter-spacing: .07em; text-transform: uppercase; display: flex; align-items: center; gap: 5px; margin-bottom: 5px; }
+  .formula-text { font-family: 'Geist Mono', monospace; font-size: 12px; color: var(--purple-mid); line-height: 1.55; }
+
+  /* Applies-to box */
+  .applies-box { background: var(--teal-bg); border-radius: var(--radius-sm); padding: 9px 12px; }
+  .applies-label { font-size: 10px; font-weight: 600; color: var(--teal-text); letter-spacing: .07em; text-transform: uppercase; display: flex; align-items: center; gap: 4px; margin-bottom: 6px; }
+  .applies-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+  .applies-tag { font-size: 11px; font-weight: 500; padding: 2px 9px; border-radius: var(--radius-pill); background: var(--surface); color: var(--teal-text); border: 1px solid var(--teal-border); }
+
+  /* Core Action items grid */
+  .ca-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 7px; }
+  .ca-item { display: flex; align-items: flex-start; gap: 8px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 9px 11px; }
+  .ca-icon { width: 26px; height: 26px; border-radius: 5px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 13px; }
+  .ca-icon.content { background: var(--blue-bg); }
+  .ca-icon.tool    { background: var(--teal-bg); }
+  .ca-icon.social  { background: var(--purple-bg); }
+  .ca-icon.loyalty { background: var(--gold-bg); }
+  .ca-icon.onboard { background: var(--green-bg); }
+  .ca-text { display: flex; flex-direction: column; gap: 1px; }
+  .ca-name { font-size: 12px; font-weight: 600; color: var(--text-primary); line-height: 1.4; }
+  .ca-note { font-size: 11px; color: var(--text-tertiary); line-height: 1.4; }
+
+  /* Watch */
+  .watch-box { padding-top: 10px; border-top: 1px solid var(--border); }
+  .watch-label { font-size: 10px; font-weight: 600; color: var(--amber-text); letter-spacing: .07em; text-transform: uppercase; display: flex; align-items: center; gap: 5px; margin-bottom: 7px; }
+  .watch-list { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+  .watch-list li { font-size: 12px; color: var(--text-secondary); padding-left: 12px; position: relative; line-height: 1.55; }
+  .watch-list li::before { content: "·"; position: absolute; left: 2px; color: var(--amber-dot); font-size: 16px; line-height: 1; top: -1px; }
+
+  /* UTM convention table */
+  .utm-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .utm-table th { text-align: left; font-size: 10px; font-weight: 600; color: var(--text-tertiary); letter-spacing: .06em; text-transform: uppercase; padding: 0 8px 6px 0; border-bottom: 1px solid var(--border); }
+  .utm-table td { padding: 6px 8px 6px 0; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.5; }
+  .utm-table tr:last-child td { border-bottom: none; }
+  .utm-table td:first-child { font-family: 'Geist Mono', monospace; font-size: 11px; color: var(--purple-mid); white-space: nowrap; padding-right: 12px; }
+  .utm-table td:last-child { color: var(--text-secondary); }
+  .utm-box { background: var(--purple-formula-bg); border-radius: var(--radius-sm); padding: 10px 12px; }
+  .utm-label { font-size: 10px; font-weight: 600; color: var(--purple-mid); letter-spacing: .07em; text-transform: uppercase; display: flex; align-items: center; gap: 5px; margin-bottom: 8px; }
+
+  /* Empty */
+  .empty { grid-column: 1/-1; text-align: center; padding: 4rem; color: var(--text-tertiary); font-size: 14px; }
+
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div class="header-inner">
+      <div>
+        <div class="header-title">Metric Glossary</div>
+        <div class="header-sub">Thuật ngữ các chỉ số sản phẩm <strong>Đi Cùng Con</strong>. Hiểu đúng định nghĩa, công thức và những điều cần chú ý trước khi đọc report.</div>
+      </div>
+      <span class="header-badge">16 chỉ số</span>
+    </div>
+  </div>
+
+  <div class="controls">
+    <div class="search-wrap">
+      <svg class="search-icon" width="14" height="14" viewBox="0 0 16 16" fill="none">
+        <circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <input class="search-input" id="search" type="text" placeholder="Tìm chỉ số..." oninput="renderCards()" />
+    </div>
+    <div class="filters">
+      <button class="pill active" onclick="setFilter('all',this)">Tất cả</button>
+      <button class="pill" onclick="setFilter('Engagement',this)">Engagement</button>
+      <button class="pill" onclick="setFilter('Retention',this)">Retention</button>
+      <button class="pill" onclick="setFilter('Traffic',this)">Traffic</button>
+      <button class="pill" onclick="setFilter('User',this)">User</button>
+      <button class="pill" onclick="setFilter('Definition',this)">Definition</button>
+    </div>
+  </div>
+
+  <div class="count-row" id="count"></div>
+  <div class="grid" id="grid"></div>
+
+</div>
+
+<script>
+const CA_HTML = `<div class="ca-grid">
+  <div class="ca-item"><div class="ca-icon content">📖</div><div class="ca-text"><span class="ca-name">Đọc ít nhất 3 bài ≥ 50%</span><span class="ca-note">Cẩm nang, tuần thai, nuôi con</span></div></div>
+  <div class="ca-item"><div class="ca-icon tool">📏</div><div class="ca-text"><span class="ca-name">Nhập chỉ số cân nặng / chiều cao</span><span class="ca-note">Tool theo dõi tăng trưởng</span></div></div>
+  <div class="ca-item"><div class="ca-icon tool">📈</div><div class="ca-text"><span class="ca-name">Xem biểu đồ tăng trưởng</span><span class="ca-note">Sau khi nhập chỉ số</span></div></div>
+  <div class="ca-item"><div class="ca-icon tool">🗓️</div><div class="ca-text"><span class="ca-name">Check cột mốc phát triển</span><span class="ca-note">Cột mốc theo tháng tuổi bé</span></div></div>
+  <div class="ca-item"><div class="ca-icon social">💬</div><div class="ca-text"><span class="ca-name">Comment bài viết</span><span class="ca-note">Tương tác cộng đồng</span></div></div>
+  <div class="ca-item"><div class="ca-icon social">↗</div><div class="ca-text"><span class="ca-name">Chia sẻ bài ra ngoài</span><span class="ca-note">Share ra Zalo / mạng xã hội</span></div></div>
+  <div class="ca-item"><div class="ca-icon loyalty">🎁</div><div class="ca-text"><span class="ca-name">Hoàn thành nhiệm vụ loyalty</span><span class="ca-note">Săn quà, tích điểm</span></div></div>
+  <div class="ca-item"><div class="ca-icon onboard">✏️</div><div class="ca-text"><span class="ca-name">Nhập thông tin thai kỳ / bé lần đầu</span><span class="ca-note">Onboarding — chỉ tính 1 lần</span></div></div>
+</div>`;
+
+const metrics = [
+  {
+    name: "DAU", full: "Daily Active Users", cat: "Engagement",
+    desc: "Unique user tương tác trong 1 ngày.",
+    layers: [
+      { type: "session",   title: "Total DAU",   desc: "Chỉ cần mở app trong ngày. Bị inflate bởi ads bounce." },
+      { type: "activated", title: "Engaged DAU",  desc: "Thực hiện ≥1 core action trong ngày. Phản ánh đúng mức độ engagement thực tế của user." }
+    ],
+    formula: "Engaged DAU = Count(user ≥1 core action / 24h)",
+    watch: [
+      "Ưu tiên báo cáo Engaged DAU — Total DAU khi 80% từ ads sẽ mislead team.",
+      "Spike DAU sau OA push chủ yếu là Total DAU, không phản ánh habit.",
+      "Nếu Engaged / Total ratio < 30%: onboarding đang có vấn đề."
+    ]
+  },
+  {
+    name: "WAU", full: "Weekly Active Users", cat: "Engagement",
+    desc: "Unique user tương tác trong 7 ngày.",
+    layers: [
+      { type: "session",   title: "Total WAU",   desc: "Chỉ cần mở app trong tuần. Bị inflate bởi ads bounce." },
+      { type: "activated", title: "Engaged WAU",  desc: "Thực hiện ≥1 core action trong tuần. Phản ánh đúng mức độ engagement thực tế của user." }
+    ],
+    formula: "Engaged WAU = Count(user ≥1 core action / 7 ngày)",
+    watch: [
+      "WAU ổn định hơn DAU, ít bị distort bởi push đơn lẻ.",
+      "WAU tốt nhưng DAU thấp = có habit tuần, chưa có habit ngày.",
+      "So sánh WAU mỗi thứ Hai để tránh bias ngày lẻ."
+    ]
+  },
+  {
+    name: "MAU", full: "Monthly Active Users", cat: "Engagement",
+    desc: "Unique user tương tác trong 30 ngày.",
+    layers: [
+      { type: "session",   title: "Total MAU",   desc: "Chỉ cần mở app trong tháng. Bị inflate bởi ads bounce." },
+      { type: "activated", title: "Engaged MAU",  desc: "Thực hiện ≥1 core action trong tháng. Phản ánh đúng mức độ engagement thực tế của user." }
+    ],
+    formula: "Engaged MAU = Count(user ≥1 core action / 30 ngày)",
+    watch: [
+      "Lagging indicator — vấn đề mất đến 30 ngày mới lộ ra. Dùng DAU/WAU để detect sớm.",
+      "MAU tăng qua ads nhưng WAU không tăng = acquisition ổn, retention đang kém.",
+      "Dùng MAU làm mẫu số để tính Stickiness."
+    ]
+  },
+  {
+    name: "Stickiness", full: "DAU / MAU Ratio", cat: "Engagement",
+    desc: "% user tháng này quay lại mỗi ngày.",
+    formula: "Engaged DAU ÷ Engaged MAU × 100%",
+    watch: [
+      "App parenting ở mức 15–25% là tốt. Facebook ~55%, Duolingo ~35%.",
+      "Stickiness thấp + DAU spike sau push = user đến khi bị kéo, chưa có habit tự nhiên.",
+      "Tăng Stickiness bằng daily trigger hữu ích, không phải tăng tần suất notification."
+    ]
+  },
+  {
+    name: "Time Spent", full: "Thời gian trung bình / phiên", cat: "Engagement",
+    desc: "Thời gian user ở lại mỗi phiên. Cần phân tích riêng theo tính năng — không phải cứ cao là tốt.",
+    formula: "Tổng thời gian phiên ÷ Số phiên",
+    watch: [
+      "Time Spent cao ở bài đọc = tốt. Cao ở màn loading hoặc lỗi = xấu.",
+      "Mục tiêu: user đạt được giá trị trong thời gian hợp lý, không phải maximize.",
+      "Phân tích riêng: nội dung cẩm nang vs nhập chỉ số vs xem cột mốc."
+    ]
+  },
+  {
+    name: "Bounce Rate", full: "Tỉ lệ thoát ngay", cat: "Engagement",
+    desc: "% phiên chỉ có 1 màn hình — user vào rồi thoát mà không tương tác thêm.",
+    formula: "Phiên 1 màn hình ÷ Tổng phiên × 100%",
+    watch: [
+      "Phải tách Bounce Rate theo nguồn: organic vs ads vs OA push — rất khác nhau.",
+      "Organic Bounce < 40% là ổn. Ads Bounce 55–70% bình thường nếu targeting chưa sắc.",
+      "Landing content không khớp kỳ vọng từ ads = Bounce Rate tăng."
+    ]
+  },
+  {
+    name: "RR7", full: "Day-7 Retention Rate", cat: "Retention",
+    desc: "% user lần đầu vào app ngày D0 quay lại vào đúng ngày D7. Chỉ số đo chất lượng onboarding quan trọng nhất.",
+    formula: "User active D7 ÷ User lần đầu vào app D0 × 100%",
+    watch: [
+      "Benchmark app mobile tốt: 25–40%. Dưới 15% = cần fix onboarding trước mọi thứ.",
+      "Phân tích RR7 theo cohort: tuần thai, tháng tuổi bé.",
+      "A/B test onboarding tác động trực tiếp và nhanh nhất lên RR7."
+    ]
+  },
+  {
+    name: "RR30", full: "Day-30 Retention Rate", cat: "Retention",
+    desc: "% user quay lại vào đúng ngày D30. Đo liệu app có trở thành đồng hành dài hạn hay chỉ dùng rồi bỏ.",
+    formula: "User active D30 ÷ User lần đầu vào app D0 × 100%",
+    watch: [
+      "Benchmark app parenting: 10–20%.",
+      "RR7 tốt nhưng RR30 thấp = user bị mất ở tuần 2–4. Cần tìm next moment of value.",
+      "User thai kỳ có lifecycle tự nhiên 9 tháng — track RR theo giai đoạn thai."
+    ]
+  },
+  {
+    name: "Weekly Retention", full: "Weekly Cohort Retention", cat: "Retention",
+    desc: "% user của tuần W0 còn active ở W1. Đo tỉ lệ giữ chân qua từng tuần trong cùng cohort.",
+    formula: "User active W1 ÷ User active W0 × 100%",
+    watch: [
+      "Retention curve phẳng ra sớm = có nhóm core user trung thành thật sự.",
+      "So sánh cohort nhận OA content vs không để đo impact kênh OA.",
+      "Tuần drop mạnh nhất = điểm cần can thiệp bằng push hoặc cải thiện UX."
+    ]
+  },
+  {
+    name: "Monthly Retention", full: "Monthly Cohort Retention", cat: "Retention",
+    desc: "% user của tháng M0 còn active ở M1. Đo tỉ lệ giữ chân qua từng tháng trong cùng cohort.",
+    formula: "User active M1 ÷ User active M0 × 100%",
+    watch: [
+      "Retention giảm tự nhiên sau sinh (M9–10) là bình thường — cần có feature cho giai đoạn mới.",
+      "So sánh retention Core User vs non-Core User để thấy delta rõ ràng.",
+      "M2–M3 > M1: user cần thời gian hình thành habit — tín hiệu tích cực."
+    ]
+  },
+  {
+    name: "Traffic Chủ Động", full: "Proactive / Direct Traffic", cat: "Traffic",
+    desc: "User tự mở app không cần bị nhắc: từ shortcut đã lưu, menu OA chủ động, tìm kiếm Zalo có chủ đích. Đây là chỉ số đo habit thật.",
+    formula: "Phiên từ: Shortcut + Menu OA chủ động + Zalo Search chủ động",
+    watch: [
+      "Khó fake nhất — user thực sự nhớ và muốn dùng app.",
+      "Nếu < 20% tổng traffic: app đang phụ thuộc quá nhiều vào push và ads.",
+      "Tỉ lệ này tăng theo thời gian = habit đang được hình thành."
+    ]
+  },
+  {
+    name: "Traffic Bị Động", full: "Passive / Triggered Traffic", cat: "Traffic",
+    desc: "User đến app sau khi thấy ads, nhận tin OA, hoặc thấy post social. Không xấu, nhưng không phản ánh habit.",
+    formula: "Phiên từ: OA broadcast + Ads click + Social post click",
+    watch: [
+      "So sánh RR7 giữa traffic chủ động vs bị động để thấy rõ chất lượng từng nguồn.",
+      "Chi phí duy trì MAU tăng nếu phần lớn user cần được kéo liên tục.",
+      "Dùng traffic bị động để reactivate churned user, không thay thế organic habit."
+    ]
+  },
+  {
+    name: "Core User", full: "User lõi Đi Cùng Con", cat: "User",
+    desc: "User thỏa đồng thời: (1) đã thực hiện ≥1 core action trong miniapp và (2) đang follow OA. Nhóm có retention và LTV cao nhất.",
+    formula: "User (Activated miniapp) AND (đang follow OA)",
+    watch: [
+      "Tỉ lệ Core User / MAU = sức khỏe thật của product. Mục tiêu tăng tỉ lệ này.",
+      "Đo time-to-activate: thời gian từ lần đầu vào app đến khi thành Core User.",
+      "Ưu tiên feature giúp convert user thường → Core User nhanh hơn."
+    ]
+  },
+  {
+    name: "Core Action", full: "Định nghĩa hành động có giá trị", cat: "Definition",
+    desc: "Các chỉ số DAU, WAU, MAU đo Activated user — user thực hiện ít nhất 1 trong các hành động dưới đây, không chỉ đơn giản là mở app.",
+    coreAction: true,
+    appliesTo: ["DAU", "WAU", "MAU", "Stickiness", "Core User"],
+    watch: [
+      "Định nghĩa này cần được đồng thuận toàn team và nhất quán trong hệ thống analytics.",
+      "Review lại danh sách mỗi khi ra tính năng mới có giá trị tương đương.",
+      "Onboarding (nhập thông tin lần đầu) chỉ tính 1 lần duy nhất cho mỗi user."
+    ]
+  },
+  {
+    name: "UTM Source", full: "Kênh phân phối traffic", cat: "Definition",
+    desc: "Xác định kênh lớn nào dẫn user vào app. Dùng tên kênh nội bộ của Đi Cùng Con, không theo convention chuẩn của GA.",
+    utmTable: [
+      { value: "ZAD",        desc: "Zalo Ads — quảng cáo trả phí trên nền tảng Zalo" },
+      { value: "social",     desc: "Mạng xã hội — Facebook, Google, TikTok, Zalo Video. Dùng UTM Medium để drill-down platform cụ thể." },
+      { value: "OA-mevabe",  desc: "Tin nhắn hoặc link từ OA Đi Cùng Con" },
+      { value: "zalo",       desc: "Các cổng vào tự nhiên trên Zalo: Zalo Search, Zalo Search Suggestion" }
+    ],
+    watch: [
+      "source=social cần đi kèm Medium để biết cụ thể là Facebook, TikTok hay Google.",
+      "ZAD và OA-mevabe không cần Medium — source đã đủ rõ.",
+      "Source bị thiếu hoặc sai = không thể đo ROI từng kênh."
+    ]
+  },
+  {
+    name: "UTM Medium", full: "Platform cụ thể (drill-down của Source)", cat: "Definition",
+    desc: "Chỉ dùng khi source=social để xác định rõ nền tảng nào. Các source khác (ZAD, OA-mevabe, zalo) không cần Medium.",
+    utmTable: [
+      { value: "facebook",  desc: "Traffic từ Facebook hoặc Instagram (cả paid lẫn post tự nhiên)" },
+      { value: "google",    desc: "Traffic từ Google Ads hoặc YouTube" },
+      { value: "tiktok",    desc: "Traffic từ TikTok (cả paid lẫn video tự nhiên)" },
+      { value: "zvideo",    desc: "Traffic từ Zalo Video" }
+    ],
+    watch: [
+      "Medium chỉ có nghĩa khi source=social — không dùng cho ZAD, OA-mevabe, zalo.",
+      "Ví dụ đầy đủ: utm_source=social&utm_medium=facebook&utm_campaign=loyalty_jan25.",
+      "Không dùng 'organic' trong Medium — phân biệt paid vs organic ở tầng phân tích, không phải UTM tag."
+    ]
+  },
+  {
+    name: "UTM Campaign", full: "Tên chiến dịch cụ thể", cat: "Definition",
+    desc: "Xác định chiến dịch hoặc nội dung cụ thể nào tạo ra traffic. Trả lời câu hỏi: campaign nào đang chạy?",
+    utmTable: [
+      { value: "thaiky_tuan_[n]",   desc: "Nội dung tuần thai — ví dụ: thaiky_tuan_12" },
+      { value: "loyalty_[thang]",   desc: "Chiến dịch săn quà — ví dụ: loyalty_jan25" },
+      { value: "onboarding_v[n]",   desc: "Flow onboarding — ví dụ: onboarding_v2" },
+      { value: "cotmoc_[thang]t",   desc: "Nội dung cột mốc bé — ví dụ: cotmoc_6t" },
+      { value: "reactivate_[dot]",  desc: "Chiến dịch kéo lại churned user" }
+    ],
+    watch: [
+      "Đặt tên nhất quán theo format: [chủ_đề]_[chi_tiết] — không viết hoa, không dấu.",
+      "Luôn gắn campaign name vào mọi link trong OA broadcast để đo được hiệu quả từng tin.",
+      "Campaign name là dữ liệu quan trọng nhất để tối ưu content — đừng để trống."
+    ]
+  }
+];
+
+let currentFilter = 'all';
+
+function setFilter(cat, el) {
+  currentFilter = cat;
+  document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+  renderCards();
+}
+
+function renderCards() {
+  const q = (document.getElementById('search').value || '').toLowerCase();
+  const grid = document.getElementById('grid');
+  const countEl = document.getElementById('count');
+
+  const filtered = metrics.filter(m => {
+    const matchCat = currentFilter === 'all' || m.cat === currentFilter;
+    const matchQ = !q || m.name.toLowerCase().includes(q)
+      || m.full.toLowerCase().includes(q)
+      || m.desc.toLowerCase().includes(q);
+    return matchCat && matchQ;
+  });
+
+  countEl.textContent = `${filtered.length} chỉ số`;
+
+  if (!filtered.length) {
+    grid.innerHTML = '<div class="empty">Không tìm thấy chỉ số nào phù hợp.</div>';
+    return;
+  }
+
+  grid.innerHTML = filtered.map(m => {
+    const midSection = m.coreAction
+      ? `${CA_HTML}
+         <div class="applies-box">
+           <div class="applies-label">
+             <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.2"/><path d="M4 6l1.5 1.5L8 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+             Áp dụng cho
+           </div>
+           <div class="applies-tags">${m.appliesTo.map(t => `<span class="applies-tag">${t}</span>`).join('')}</div>
+         </div>`
+      : m.utmTable
+      ? `<div class="utm-box">
+           <div class="utm-label">
+             <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><rect x="1" y="1" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1.3"/><path d="M3 4h6M3 6h4M3 8h5" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg>
+             Convention cho Đi Cùng Con
+           </div>
+           <table class="utm-table">
+             <thead><tr><th>Value</th><th>Dùng khi nào</th></tr></thead>
+             <tbody>${m.utmTable.map(r => `<tr><td>${r.value}</td><td>${r.desc}</td></tr>`).join('')}</tbody>
+           </table>
+         </div>`
+      : `${m.layers ? `<div class="two-layers">${m.layers.map(l =>
+          `<div class="layer-box ${l.type}"><div class="layer-title">${l.title}</div><div class="layer-desc">${l.desc}</div></div>`
+        ).join('')}</div>` : ''}
+        <div class="formula-box">
+          <div class="formula-label">
+            <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><rect x="1" y="1" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1.3"/><path d="M4 6h4M6 4v4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+            Công thức
+          </div>
+          <div class="formula-text">${m.formula}</div>
+        </div>`;
+
+    return `<div class="card">
+      <div class="card-top">
+        <span class="metric-name">${m.name}</span>
+        <span class="cat-badge cat-${m.cat}">${m.cat}</span>
+      </div>
+      <div class="metric-full">${m.full}</div>
+      <div class="metric-desc">${m.desc}</div>
+      ${midSection}
+      <div class="watch-box">
+        <div class="watch-label">
+          <svg width="11" height="11" viewBox="0 0 12 12" fill="none">
+            <path d="M6 2v3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+            <circle cx="6" cy="8.5" r=".8" fill="currentColor"/>
+            <circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.2"/>
+          </svg>
+          Cần chú ý
+        </div>
+        <ul class="watch-list">${m.watch.map(w => `<li>${w}</li>`).join('')}</ul>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+renderCards();
+</script>
+</body>
+</html>
